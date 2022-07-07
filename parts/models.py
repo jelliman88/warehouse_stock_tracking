@@ -21,7 +21,7 @@ class Part(models.Model):
     group_no = models.IntegerField(null=True, blank=True)
     bike = models.ForeignKey(Bike, on_delete=models.CASCADE)
     bike_models = models.JSONField(default=list)
-    starting_points = models.JSONField(default=dict)
+    starting_points = models.JSONField(default=dict,blank=True, null=True)
     trackable = models.BooleanField(default=False)
     tracking = models.BooleanField(default=False) 
 
