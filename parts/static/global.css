@@ -1,0 +1,26 @@
+.banner {
+    background-color: #00a9e0;
+    min-height: 100px ;
+    text-align: center;
+    padding: 25px;
+    min-width: auto;
+}
+#results { 
+    z-index: 1;
+	position: absolute;
+    background-color: white;
+
+}
+
+.wrapper {
+    background-color: lightgray;
+    padding: 4rem;
+    min-width: 40rem;
+    max-width: 40rem;
+    min-height: 20rem;
+    max-height: auto;
+}
+
+#form {
+    display: none;
+}

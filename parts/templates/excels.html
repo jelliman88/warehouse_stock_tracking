@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block content %}
+<div>
+   
+
+   <div class="m-5">
+    {{ msg }}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+            <h3>last update : <span class="text-success">{{ last_update.0.date }}</span></h3>
+            <input type="submit" name="update-system" class="btn btn-danger" value="update system"/>
+           
+       </form>
+    
+       <h3>previous uploads</h3>
+       <ul>
+            {% for excel in excels %}
+            <li><a href="{% url 'parts:excel-detail' excel.pk %}">{{ excel.upload_date }}</a></li>
+            {% endfor %}
+       </ul> 
+   </div>
+   
+</div>
+{%  endblock %}

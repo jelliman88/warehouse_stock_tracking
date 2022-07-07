@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block content %}
+<div class="wrapper"> 
+    <a class="btn btn-primary m-3"href="{% url 'parts:excels'%}">see previous uploads</a>
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        <input type="file" name="file" >
+        
+       <button class="btn btn-success">submit</button>
+   </form>
+
+   <div class="m-5">
+       <ul>
+            {% for obj in arr %}
+            <li>{{ obj }}</li>
+            {% endfor %}
+       </ul> 
+   </div>
+   
+</div>
+{%  endblock %}

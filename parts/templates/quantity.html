@@ -1,0 +1,51 @@
+{% extends "base.html" %} {% block content %}
+<div class="wrapper">
+    
+    <h3>
+        {{ part.slug }}: {{ part.quantity }} in stock
+    </h3>
+   
+    <p>{{ msg }}</p>
+    <form id="input" method="POST">
+        {% csrf_token %}
+        <label for="add"a>Add to stock:</label>
+        <input type="text" id="add" name="number" required="true">
+        <br>
+        <input name="add" type="submit" class="btn btn-success" value="+"/>
+
+        <input name="minus" type="submit" class="btn btn-warning" value="-"/>
+        
+    </form>
+    
+    <form method="POST" id="form">
+       {% csrf_token %}
+       {{ form.as_p }}
+       <button class="btn btn-success">submit</button>
+      </form>
+      <button class="btn btn-danger mt-5"id="toggleButton" onclick="toggleView()">override total</button>
+</div>
+
+
+<script>
+    const toggleButton = document.getElementById('toggleButton')
+    const form = document.getElementById('form')
+    const input = document.getElementById('input')
+    let toggle = false
+
+    const toggleView = () => {
+        if(toggle) {
+            input.style.display = 'block'
+            form.style.display = 'none'
+            toggleButton.innerHTML = 'override total'
+            toggle = false
+        } else {
+            input.style.display = 'none'
+            form.style.display = 'block'
+            toggleButton.innerHTML = '+/-'
+            toggle = true
+        }
+        
+    }
+</script>
+
+{% endblock %}

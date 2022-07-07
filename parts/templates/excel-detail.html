@@ -1,0 +1,72 @@
+{% extends "base.html" %} {% block content %}
+<div>
+   
+
+   <div class="m-5">
+       <h3>{{ excel.upload_date }}</h3>
+       <table class="table table-bordered">
+        <tr scope="row">
+            <th>
+                name
+            </th>
+            <th>
+                position
+            </th>
+            <th>
+                D7
+            </th>
+            <th>
+                 O1
+            </th>
+            <th>
+                P7
+           </th>
+           <th>
+                P1
+            </th>
+            <th>
+                total
+           </th>
+        </tr>
+
+        </tr>
+        {% for obj in data %}
+            
+        
+        
+        <tr scope="row" class="text-light bg-info">
+            
+            
+            <tr scope="row">
+                <td>
+                    {{ obj.asset }}
+                </td>
+                <td>
+                    {{ obj.position }}
+                </td>
+                <td>
+                    {{ obj.D7 }}
+                </td>
+                <td>
+                    {{ obj.O1 }} 
+            
+                </td>
+                <td>
+                    {{ obj.P7 }}
+               </td>
+               <td>
+                {{ obj.P1 }}
+                </td>
+                <td>
+                    {{ obj.total }}
+               </td>
+        
+        {% endfor %}
+       
+        </tr>
+    </table>
+     
+   </div>
+   
+</div>
+{%  endblock %}

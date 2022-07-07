@@ -1,0 +1,126 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<div>
+    <div class="m-1">
+        <form method="GET" id="search-form">
+            {% csrf_token %}
+            <input id="searchbar" type="text" placeholder="search" name="search" onchange="search()">
+            <button>search</button>
+        </form>
+
+    </div>
+    <div>
+        <ul id="results" class="d-flex flex-column"></ul>
+    </div>
+    <div>
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a> {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span> {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a> {% endif %}
+    </div>
+    <table class="table table-bordered">
+        <tr scope="row">
+            <th >
+                tracking
+            </th>
+            <th>
+                name
+            </th>
+            <th>
+                serial number
+            </th>
+            <th>
+                bikes
+            </th>
+            <th>
+                 total
+            </th>
+            <th>
+                edit
+           </th>
+           <th>
+            stock take
+            </th>   
+        </tr>
+
+        </tr>
+
+        {% for part in page_obj %}
+        
+        
+        
+        
+        <tr scope="row" class="text-light bg-info">
+            
+           
+            <tr scope="row">
+                {% if part.tracking %}
+            <td class="bg-success text-center h6 text-light">
+                ✅
+            </td>
+            {% else %}
+            <td class="text-center h6">
+                ✖
+            </td>
+            {% endif %}
+            
+            <td >
+                {{ part.slug }}
+            </td>
+            
+            
+           
+            <td>
+                {{ part.part_no }}
+            </td>
+
+            <td class="bike_models">
+                {% for bike in part.bike_models %} <span class="border p-1">{{ bike }}</span> {% endfor %}
+            </td>
+            {% if part.quantity <= part.threshold and part.quantity != 0  %}
+            
+            <td class="bg-danger text-light"> 
+            {% else %}
+            <td>
+            {% endif %}
+                {{ part.quantity }}
+
+            </td>
+            <td>
+            <span class="m-2">
+                <a href="{% url 'parts:edit-part' part.id %}">edit</a>
+            </span>
+            </td>
+            <td>
+                <span class="m-2">
+                    <a href="{% url 'parts:quantity' part.id %}">+/-</a>
+                </span>
+            </td>
+        </tr>
+        
+        
+        {% endfor %}
+        </tr>
+    </table>
+
+
+
+    <div>
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a> {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span> {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a> {% endif %}
+    </div>
+</div>
+
+<script src="{% static 'list-parts/index.js' %}"></script>
+{% endblock %}

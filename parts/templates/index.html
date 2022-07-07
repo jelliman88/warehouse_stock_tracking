@@ -1,0 +1,9 @@
+{% extends "base.html" %} {% block content %}
+<div>
+    <ul class="list-unstyled">
+        <li><a href="{% url 'parts:list-parts'%}"><button class="btn btn-primary m-1">parts</button></a> </li>
+        <!--<li><a href="{% url 'parts:add-parts'%}"><button class="btn btn-danger m-1">add parts</button></a></li>-->
+        <li><a href="{% url 'parts:upload'%}"><button class="btn btn-warning m-1">upload</button></a></li>
+    </ul>
+</div>
+{%  endblock %}
